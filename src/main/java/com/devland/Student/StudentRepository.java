@@ -1,6 +1,7 @@
 package com.devland.Student;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -40,6 +41,20 @@ public class StudentRepository {
             System.out.println("Get All Students with id '"+dbId+"': ");
 
             this.printAllStudents(resultSet);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addStudent(String firstName, String lastName, int age) {
+        try {
+            PreparedStatement st = this.connection.prepareStatement("INSERT INTO student(first_name,last_name,age) VALUES(?, ?, ?)");
+            st.setString(1, firstName);
+            st.setString(2, lastName);
+            st.setInt(3, age);
+            st.executeUpdate();
+            st.close();
+            System.out.println("Student add successfully");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

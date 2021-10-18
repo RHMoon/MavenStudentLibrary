@@ -42,6 +42,17 @@ public class App
                     break;
                 case 2:
                     System.out.println("Option 2.");
+                    // System.out.print("Input first name, last name, age: ");
+                    // String inputFirstName = scanner.nextLine();
+                    // String inputLastName = scanner.nextLine();
+                    System.out.print("Input the first name: ");
+                    String inputFirstName = scanner.next();
+                    System.out.print("Input the last name: ");
+                    String inputLastName = scanner.next();
+                    System.out.println();
+                    System.out.print("Input the age: ");
+                    int inputAge = scanner.nextInt();
+                    studentRepository.addStudent(inputFirstName,inputLastName,inputAge);
                     break;
                 case 3:
                     System.out.println("Option 3.");
