@@ -2,6 +2,9 @@ package com.devland;
 
 import java.util.Scanner;
 
+import com.devland.Student.StudentRepository;
+import com.devland.Util.DatabaseConnector;
+
 /**
  * Hello world!
  *
@@ -16,7 +19,9 @@ public class App
         
         // System.out.print(input);
         int input;
-
+        DatabaseConnector connector = new DatabaseConnector();
+        connector.connect();
+        StudentRepository studentRepository = new StudentRepository(connector);
         do {
             System.out.println("-----------------------------------");
             System.out.println("Hello! Welcome to DevLand School.");
@@ -33,12 +38,16 @@ public class App
             switch (input) {
                 case 1:
                     System.out.println("Option 1.");
+                    studentRepository.getAllStudent();
                     break;
                 case 2:
                     System.out.println("Option 2.");
                     break;
                 case 3:
                     System.out.println("Option 3.");
+                    System.out.print("Input the ID: ");
+                    int inputID = scanner.nextInt();
+                    studentRepository.getByID(inputID);
                     break;
                 case 4:
                     System.out.println("Option 4.");
